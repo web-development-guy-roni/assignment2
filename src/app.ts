@@ -7,6 +7,7 @@ import swaggerUi from "swagger-ui-express";
 import swaggerJsDoc from "swagger-jsdoc";
 import postRoute from "./routes/post_route";
 import commentRoute from "./routes/comment_route";
+import authRoute from "./routes/auth_route";
 import userRoute from "./routes/user_route";
 
 dotenv.config();
@@ -46,6 +47,7 @@ const appPromise = new Promise<Express>((resolve, reject) => {
         // Routes
         app.use("/post", postRoute);
         app.use("/comment", commentRoute);
+        app.use("/auth", authRoute);
         app.use("/user", userRoute);
 
         resolve(app);

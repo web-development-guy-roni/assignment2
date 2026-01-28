@@ -2,6 +2,7 @@
 import express from "express";
 const router = express.Router();
 import postController from "../controllers/post_controller";
+import authenticate from "../common/auth_middleware";
 
 /**
  * @swagger
@@ -98,7 +99,7 @@ router.get("/:id", postController.getById.bind(postController));
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.post("/", postController.post.bind(postController));
+router.post("/", authenticate, postController.post.bind(postController));
 
 /**
  * @swagger
@@ -129,6 +130,6 @@ router.post("/", postController.post.bind(postController));
  *             schema:
  *               $ref: '#/components/schemas/Post'
  */
-router.put("/:id", postController.put.bind(postController));
+router.put("/:id", authenticate, postController.put.bind(postController));
 
 export default router;

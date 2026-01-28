@@ -2,6 +2,7 @@
 import express from "express";
 const router = express.Router();
 import commentController from "../controllers/comment_controller";
+import authenticate from "../common/auth_middleware";
 
 /**
  * @swagger
@@ -123,7 +124,7 @@ router.get("/post/:postId", commentController.getByPostId.bind(commentController
  *             schema:
  *               $ref: '#/components/schemas/Comment'
  */
-router.post("/", commentController.post.bind(commentController));
+router.post("/", authenticate, commentController.post.bind(commentController));
 
 /**
  * @swagger
@@ -154,7 +155,7 @@ router.post("/", commentController.post.bind(commentController));
  *             schema:
  *               $ref: '#/components/schemas/Comment'
  */
-router.put("/:id", commentController.put.bind(commentController));
+router.put("/:id", authenticate, commentController.put.bind(commentController));
 
 /**
  * @swagger
@@ -175,6 +176,6 @@ router.put("/:id", commentController.put.bind(commentController));
  *       200:
  *         description: Comment deleted
  */
-router.delete("/:id", commentController.delete.bind(commentController));
+router.delete("/:id", authenticate, commentController.delete.bind(commentController));
 
 export default router;

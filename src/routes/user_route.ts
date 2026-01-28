@@ -2,6 +2,7 @@
 import express from "express";
 const router = express.Router();
 import userController from "../controllers/user_controller";
+import authenticate from "../common/auth_middleware";
 
 /**
  * @swagger
@@ -80,6 +81,6 @@ router.get("/:id", userController.getById.bind(userController));
  *       200:
  *         description: User deleted
  */
-router.delete("/:id", userController.delete.bind(userController));
+router.delete("/:id", authenticate, userController.delete.bind(userController));
 
 export default router;
