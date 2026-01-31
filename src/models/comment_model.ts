@@ -1,4 +1,4 @@
-// Guy-Rozenbaum-214424814-Roni-Taktuk-213207640
+// Guy-Rozenbaum-214424814-Roni-Taktook-213207640
 import mongoose from "mongoose";
 
 export interface IComment {
